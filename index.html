@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app = "ShoppingListCheckOff">
+<head>
+  <meta charset="utf-8">
+  <script src="angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+  div.style{
+    float:left;
+    padding:10px;
+      }
+  h2.font{
+    text-align: center;
+  }
+  h3.font{
+    color: Green;
+  }
+td.btn{
+  padding-left:20px;
+  padding-right:10px;
+}
+li.list{
+  padding:5px;
+}
+      </style>
+  </head>
+
+<body>
+  <h1>Shopping List Check Off Application</h1>
+  <div>
+  <div ng-controller='ToBuyController as showLists' class="style">
+      <h2 class="font"> To Buy</h2>
+    <div ng-if="showLists.items.length == 0 || showLists.items == ''">
+      <h3 class="font">Everything is bought!</h3>
+    </div>
+      <ol>
+      <li ng-repeat="item in showLists.items" class="list">
+	   <table>
+		<tr>
+			<td> Buy </td>
+			<td> {{item.quantity}} </td>
+			<td> {{item.name}} </td>
+			<td></td>
+			<td class="btn">          
+				<button  ng-click="showLists.removeItems($index , item.name , item.quantity);"> Bought </button>
+			</td>
+		</tr>
+	   </table>
+      </li>
+    </ol>
+  </div>
+
+
+  <div ng-controller='AlreadyBoughtController as boughtItems'  class="style">
+    <h2 class="font">Already Bought </h2>
+    <div ng-if="boughtItems.itemsBought.length == 0 || boughtItems.itemsBought == ''">
+      <h3 class="font">Nothing bought yet!</h3>
+    </div>
+    <ol>
+      <li ng-repeat="itembought in boughtItems.itemsBought" class="list">
+        Bought {{itembought.quantity}} {{itembought.name}}
+      </li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>
